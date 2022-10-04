@@ -126,7 +126,12 @@
     right: 0;
     background: #333;
     z-index: 999;
+
     animation: animation 0.3s linear;
+  }
+  .showNavbar {
+    border-bottom: 1px solid #424242;
+    margin-bottom: 0;
   }
   .showNavbar:hover .listNavbar {
     display: none;

@@ -8,9 +8,12 @@
 .logo img {
   width: 160px;
 }
-h3 {
+.footer h3 {
   color: white;
+  font-size: 14px;
+  font-weight: 300;
 }
+
 ul {
   list-style: none;
 }
@@ -35,10 +38,6 @@ li a:hover {
 @media (max-width: 768px) {
   .logo img {
     width: 90px;
-  }
-  .footer h3 {
-    font-size: 16px;
-    max-width: 30px;
   }
   .footer a {
     font-size: 14px;

@@ -16,9 +16,15 @@ ul {
 input {
   line-height: 0;
 }
-.col-2-5 {
-  flex: 0 0 20%;
-  max-width: 20%;
+@media (max-width: 768px) {
+  .col-2-5 {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+h3 {
+  color: white;
 }
 .slick-slide {
   padding: 0 5px;

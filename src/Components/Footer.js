@@ -6,10 +6,10 @@ function Footer() {
       <div className={styles.footer}>
         <div className={`container ${styles.container}`}>
           <div className="row">
-            <div className={`col-2 ${styles.logo}`}>
+            <div className={`col-md-2 d-none d-md-block ${styles.logo}`}>
               <img src="https://phimmoichills.net/dev/images/logo.png" alt="" />
             </div>
-            <div className="col-2">
+            <div className="col-md-2 col-2-5 col-3">
               <h3>Phim Mới</h3>
               <ul>
                 <li>
@@ -35,7 +35,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col-2">
+            <div className="col-md-2 col-2-5 col-3">
               <h3>Phim Hay</h3>
               <ul>
                 <li>
@@ -61,7 +61,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col-2">
+            <div className="col-md-2 col-2-5 col-3">
               <h3>Phim Hot</h3>
               <ul>
                 <li>
@@ -72,7 +72,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col-2">
+            <div className="col-md-2 col-2-5 col-3">
               <h3>Trợ giúp</h3>
               <ul>
                 <li>
@@ -86,7 +86,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col-2">
+            <div className="col-md-2 col-2-5 col-3">
               <h3>Thông Tin</h3>
               <ul>
                 <li>

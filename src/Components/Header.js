@@ -301,9 +301,7 @@ function Header(props) {
                   >
                     <Link>{x.title}</Link>
                     {x.item.length > 0 && (
-                      <ul
-                        className={`row listNavbarDropdown ${styles.listNavbar}`}
-                      >
+                      <ul className={`row ${styles.listNavbar}`}>
                         {x.item.map((y) => {
                           return (
                             <li className={x.column == 3 ? "col-4" : "col-6"}>
