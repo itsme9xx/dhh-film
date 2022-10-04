@@ -1,0 +1,46 @@
+.footer {
+  margin-top: 40px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.container {
+  padding-top: 20px;
+}
+.logo img {
+  width: 160px;
+}
+h3 {
+  color: white;
+}
+ul {
+  list-style: none;
+}
+li {
+  margin-bottom: 5px;
+}
+li a {
+  text-decoration: none;
+  color: #666;
+}
+li a:hover {
+  color: yellow;
+}
+.actor {
+  color: rgb(224, 116, 65);
+}
+@media (max-width: 992px) {
+  .logo img {
+    width: 100px;
+  }
+}
+@media (max-width: 768px) {
+  .logo img {
+    width: 90px;
+  }
+  .footer h3 {
+    font-size: 16px;
+    max-width: 30px;
+  }
+  .footer a {
+    font-size: 14px;
+  }
+}

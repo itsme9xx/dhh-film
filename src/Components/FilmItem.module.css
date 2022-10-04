@@ -1,0 +1,54 @@
+.slideBlock {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.slideBlock img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+.slideBlock:hover img {
+  transform: scale(1.1);
+}
+.slideBlock:hover .playIcon {
+  transform: scale(1);
+}
+
+.title {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+  font-size: 1.5rem;
+  height: 40px;
+  line-height: 32px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.playIcon {
+  transition: 0.3s ease-in;
+  transform: scale(0);
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -26px 0px 0 -26px;
+  height: 50px;
+  width: 50px;
+  z-index: 10000;
+  background-color: #ff9601;
+  border-radius: 50%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+.title:hover {
+  color: #ff9601;
+}

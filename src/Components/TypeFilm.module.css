@@ -1,0 +1,86 @@
+.heading {
+  margin-top: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+.title {
+  color: #ff8a00;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.title:hover {
+  color: #ff8a00;
+}
+a {
+  text-decoration: none;
+}
+.seeMore {
+  color: white;
+  background-color: #5d5d5d;
+  padding: 0 5px;
+  display: flex;
+  border: 1px solid rgb(5, 5, 3);
+}
+.seeMore:hover {
+  color: #ff8a00;
+}
+
+.navHeading {
+  display: flex;
+  align-items: center;
+}
+.subHeading {
+  margin-left: 10px;
+}
+.subHeading li {
+  margin: 0;
+  display: inline-block;
+  padding: 0 10px;
+  margin: 0 5px;
+  background-color: #504d49;
+  border: 1px solid rgb(5, 5, 3);
+}
+.subHeading li a {
+  color: white;
+}
+.subHeading li:hover {
+  background-color: #ff8a00;
+}
+
+@media (max-width: 992px) {
+  .title {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 661px) and (max-width: 777px) {
+  .title {
+    font-size: 14px;
+  }
+  .seeMore {
+    font-size: 16px;
+  }
+  .seeMore span {
+    font-size: 22px;
+  }
+  .subHeading a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 660px) {
+  .subHeading {
+    display: none;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .seeMore {
+    font-size: 20px;
+  }
+  .seeMore span {
+    font-size: 30px;
+  }
+} ;
