@@ -2,42 +2,66 @@ import styles from "./DetailsFilm.module.css";
 import { useState, useEffect } from "react";
 import Headers from "./Header";
 import Content from "./Content";
+import { Link } from "react-router-dom";
 
 function DetailsFilm() {
+  const [toogleVideo, settoogleVideo] = useState(false);
+  const [hidden, setHidden] = useState(true);
   return (
     <div className={`container ${styles.total} `}>
-      <div className={styles.video}>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">
-          <img
-            className={styles.bigImg}
-            src="https://gogocdn.net/images/anime/N/naruto.jpg"
-            style={{ background: "cover" }}
-            alt=""
-          />
-          <img
-            className={styles.smallImg}
-            src="https://gogocdn.net/images/anime/N/naruto.jpg"
-            style={{ background: "cover" }}
-            alt=""
-          />
+      <div
+        onClick={() => {
+          settoogleVideo(!toogleVideo);
+          setHidden(!hidden);
+        }}
+        className={styles.video}
+      >
+        {hidden && (
+          <Link>
+            <img
+              className={styles.bigImg}
+              src="https://gogocdn.net/images/anime/N/naruto.jpg"
+              style={{ background: "cover" }}
+              alt=""
+            />
+            <img
+              className={styles.smallImg}
+              src="https://gogocdn.net/images/anime/N/naruto.jpg"
+              style={{ background: "cover" }}
+              alt=""
+            />
 
-          <span className={`${styles.playIcon} material-symbols-outlined`}>
-            play_arrow
-          </span>
-          <div className={styles.text}>
-            <p>Naruto</p>
-            <ul className={styles.listButton}>
-              <a href="">
-                <span class="material-symbols-outlined">live_tv</span>
-                <li className={styles.trailer}>Trailer</li>
-              </a>
-              <a href="">
-                <span class="material-symbols-outlined">play_arrow</span>
-                <li className={styles.play}>Xem phim</li>
-              </a>
-            </ul>
-          </div>
-        </a>
+            <span className={`${styles.playIcon} material-symbols-outlined`}>
+              play_arrow
+            </span>
+            <div className={styles.text}>
+              <p>Naruto</p>
+              <ul className={styles.listButton}>
+                <a href="">
+                  <span class="material-symbols-outlined">live_tv</span>
+                  <li className={styles.trailer}>Trailer</li>
+                </a>
+                <a href="">
+                  <span class="material-symbols-outlined">play_arrow</span>
+                  <li className={styles.play}>Xem phim</li>
+                </a>
+              </ul>
+            </div>
+          </Link>
+        )}
+
+        {toogleVideo && (
+          <iframe
+            className={styles.ytb}
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        )}
       </div>
       <div className={styles.content}>
         <div className={styles.actor}>
