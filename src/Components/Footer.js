@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 
 function Footer() {
@@ -13,25 +14,25 @@ function Footer() {
               <h3>Phim Mới</h3>
               <ul>
                 <li>
-                  <a href="/details">Phim chiếu rạp</a>
+                  <Link to="/details">Phim chiếu rạp</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim lẻ</a>
+                  <Link to="/details">Phim lẻ</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim bộ</a>
+                  <Link to="/details">Phim bộ</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim hành động</a>
+                  <Link to="/details">Phim hành động</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim viễn tưởng</a>
+                  <Link to="/details">Phim viễn tưởng</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim tâm lý</a>
+                  <Link to="/details">Phim tâm lý</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim hài hước</a>
+                  <Link to="/details">Phim hài hước</Link>
                 </li>
               </ul>
             </div>
@@ -39,25 +40,25 @@ function Footer() {
               <h3>Phim Hay</h3>
               <ul>
                 <li>
-                  <a href="/details">Phim Mỹ</a>
+                  <Link to="/details">Phim Mỹ</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim Hàn Quốc</a>
+                  <Link to="/details">Phim Hàn Quốc</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim Trung Quốc</a>
+                  <Link to="/details">Phim Trung Quốc</Link>
                 </li>
                 <li>
-                  <a href="/details"> Phim Thái Lan</a>
+                  <Link to="/details"> Phim Thái Lan</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim Việt Nam</a>
+                  <Link to="/details">Phim Việt Nam</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim Ma Kinh Dị</a>
+                  <Link to="/details">Phim Ma Kinh Dị</Link>
                 </li>
                 <li>
-                  <a href="/details">Phim Hoạt Hình</a>
+                  <Link to="/details">Phim Hoạt Hình</Link>
                 </li>
               </ul>
             </div>
@@ -65,10 +66,10 @@ function Footer() {
               <h3>Phim Hot</h3>
               <ul>
                 <li>
-                  <a href="/details">Phimmoi</a>
+                  <Link to="/details">Phimmoi</Link>
                 </li>
                 <li>
-                  <a href="/details">Sitemap</a>
+                  <Link to="/details">Sitemap</Link>
                 </li>
               </ul>
             </div>
@@ -76,13 +77,13 @@ function Footer() {
               <h3>Trợ giúp</h3>
               <ul>
                 <li>
-                  <a href="/details">Trợ giúp</a>
+                  <Link to="/details">Trợ giúp</Link>
                 </li>
                 <li>
-                  <a href="/details">Liên hệ</a>
+                  <Link to="/details">Liên hệ</Link>
                 </li>
                 <li>
-                  <a href="/details">Tin tức</a>
+                  <Link to="/details">Tin tức</Link>
                 </li>
               </ul>
             </div>
@@ -90,13 +91,13 @@ function Footer() {
               <h3>Thông Tin</h3>
               <ul>
                 <li>
-                  <a href="/details">Điều khoản sử dụng</a>
+                  <Link to="/details">Điều khoản sử dụng</Link>
                 </li>
                 <li>
-                  <a href="/details">Chính sách riêng tư</a>
+                  <Link to="/details">Chính sách riêng tư</Link>
                 </li>
                 <li>
-                  <a href="/details">Khiếu nại bản quyển</a>
+                  <Link to="/details">Khiếu nại bản quyển</Link>
                 </li>
                 <p className={styles.actor}>Designed by HoangHai</p>
               </ul>

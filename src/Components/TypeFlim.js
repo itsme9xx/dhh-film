@@ -1,27 +1,28 @@
+import { Link } from "react-router-dom";
 import styles from "./TypeFilm.module.css";
 
 function TypeFilm(props) {
   return (
     <div className={`container ${styles.heading}`}>
       <div className={styles.navHeading}>
-        <a href="/details" className={styles.title}>
+        <Link to="/details" className={styles.title}>
           {props.title}
-        </a>
+        </Link>
         <ul className={styles.subHeading}>
-          {props.tag.map((x) => {
+          {props.tag.map((x, index) => {
             return (
-              <li>
-                <a href="/details">{x}</a>
+              <li key={index}>
+                <Link to="/details">{x}</Link>
               </li>
             );
           })}
         </ul>
       </div>
 
-      <a className={styles.seeMore} href="/details">
+      <Link className={styles.seeMore} to="/details">
         Xem tất cả
         <span className="material-symbols-outlined ">arrow_right</span>
-      </a>
+      </Link>
     </div>
   );
 }

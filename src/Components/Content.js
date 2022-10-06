@@ -6,64 +6,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import suggestFilmImg from "../assets/img/onepiece.jpg";
 import FilmItem from "./FilmItem";
-// const video = [
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-//   {
-//     title: "Sát thủ đối đầu",
-//     img: "https://media-cdn-v2.laodong.vn/storage/newsportal/2017/9/29/567436/Liam-Neeson-Phim-Han.jpg",
-//   },
-// ];
 
-function Content() {
+function Content(props) {
   const [slide, setSlide] = useState([
     {
       title: "",
       img: "",
     },
   ]);
+
   useEffect(() => {
     fetch("https://gogoanime.herokuapp.com/anime-movies")
       .then((response) => response.json())
@@ -113,8 +64,12 @@ function Content() {
       <div className={styles.suggestfilm}>
         <p>PHIM ĐỀ CỬ</p>
         <Slider {...settings}>
-          {slide.map((x) => {
-            return <FilmItem data={x} />;
+          {slide.map((x, index) => {
+            return (
+              <div key={index}>
+                <FilmItem Linkto={props.Linkto} key={index} data={x} />
+              </div>
+            );
           })}
         </Slider>
       </div>

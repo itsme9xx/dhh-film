@@ -4,7 +4,8 @@ import Headers from "./Header";
 import Content from "./Content";
 import { Link } from "react-router-dom";
 
-function DetailsFilm() {
+function DetailsFilm(props) {
+  console.log(props);
   const [toogleVideo, settoogleVideo] = useState(false);
   const [hidden, setHidden] = useState(true);
   return (
@@ -17,16 +18,16 @@ function DetailsFilm() {
         className={styles.video}
       >
         {hidden && (
-          <Link>
+          <div>
             <img
               className={styles.bigImg}
-              src="https://gogocdn.net/images/anime/N/naruto.jpg"
+              src={props.video.animeImg}
               style={{ background: "cover" }}
               alt=""
             />
             <img
               className={styles.smallImg}
-              src="https://gogocdn.net/images/anime/N/naruto.jpg"
+              src={props.video.animeImg}
               style={{ background: "cover" }}
               alt=""
             />
@@ -35,19 +36,19 @@ function DetailsFilm() {
               play_arrow
             </span>
             <div className={styles.text}>
-              <p>Naruto</p>
+              <p>{props.video.animeTitle}</p>
               <ul className={styles.listButton}>
-                <a href="">
-                  <span class="material-symbols-outlined">live_tv</span>
+                <Link to="">
+                  <span className="material-symbols-outlined">live_tv</span>
                   <li className={styles.trailer}>Trailer</li>
-                </a>
-                <a href="">
-                  <span class="material-symbols-outlined">play_arrow</span>
+                </Link>
+                <Link to="">
+                  <span className="material-symbols-outlined">play_arrow</span>
                   <li className={styles.play}>Xem phim</li>
-                </a>
+                </Link>
               </ul>
             </div>
-          </Link>
+          </div>
         )}
 
         {toogleVideo && (
@@ -57,9 +58,9 @@ function DetailsFilm() {
             height="315"
             src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         )}
       </div>
@@ -79,7 +80,7 @@ function DetailsFilm() {
           </li>
 
           <li>
-            <label>Đạo diễn : Ichika</label>
+            <label>Đạo diễn : </label>
             <span> Ichika </span>
           </li>
           <li>

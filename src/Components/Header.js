@@ -283,7 +283,7 @@ function Header(props) {
             }}
             className={styles.menuMobile}
           >
-            <span class={` material-symbols-outlined isMobi`}>menu</span>
+            <span className={` material-symbols-outlined isMobi`}>menu</span>
           </div>
           <div className={styles.logo}>
             <Link to="/">
@@ -292,9 +292,10 @@ function Header(props) {
           </div>
           {toggleMenu && (
             <ul className={styles.navbarItem}>
-              {datafilm.map((x) => {
+              {datafilm.map((x, index) => {
                 return (
                   <li
+                    key={index}
                     className={`${x.active ? styles.active : ""} ${
                       styles.showNavbar
                     }`}
@@ -302,12 +303,15 @@ function Header(props) {
                     <Link>{x.title}</Link>
                     {x.item.length > 0 && (
                       <ul className={`row ${styles.listNavbar}`}>
-                        {x.item.map((y) => {
+                        {x.item.map((y, index) => {
                           return (
-                            <li className={x.column == 3 ? "col-4" : "col-6"}>
-                              <a className="sub-menu-link" href={y.link}>
+                            <li
+                              key={index}
+                              className={x.column == 3 ? "col-4" : "col-6"}
+                            >
+                              <Link className="sub-menu-link" to={y.link}>
                                 {y.type}
-                              </a>
+                              </Link>
                             </li>
                           );
                         })}

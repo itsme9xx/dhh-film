@@ -9,7 +9,7 @@
 }
 .video .bigImg {
   width: 100%;
-  height: 650px;
+  height: 550px;
 }
 .video:hover .playIcon {
   transform: scale(1);

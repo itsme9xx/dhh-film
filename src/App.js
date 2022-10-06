@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import { useState, useEffect, Fragment } from "react";
 import Content from "./Components/Content";
@@ -41,6 +41,12 @@ function App() {
       video: [],
     },
   ]);
+  const [detailFilm, setdetailFilm] = useState({});
+  function Linkto(datadetail) {
+    componentDidMount();
+    // console.log(datadetail);
+    setdetailFilm(datadetail);
+  }
   const [toogleMenu, setToogleMenu] = useState(true);
   useEffect(() => {
     fetch("https://gogoanime.herokuapp.com/recent-release")
@@ -48,7 +54,7 @@ function App() {
       .then((animelist) => {
         const filmrecent = data[0];
         filmrecent.video = animelist.filter((x, index) => index < 12);
-        setData([...data]);
+        setData([...data]); //speard operate
       });
     fetch("https://gogoanime.herokuapp.com/popular")
       .then((response) => response.json())
@@ -80,6 +86,12 @@ function App() {
       });
   }, []);
 
+  function componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="customContainer">
       <Header b={setToogleMenu} />
@@ -89,13 +101,16 @@ function App() {
             path="/"
             element={
               <>
-                <Content />
-
+                <Content Linkto={Linkto} />
                 {data.map((x, index) => {
                   return (
                     <div key={index}>
                       <TypeFilm title={x.title} tag={x.tag} />
-                      <ListFilm video={x.video} largeItem={x.largeItem} />
+                      <ListFilm
+                        Linkto={Linkto}
+                        video={x.video}
+                        largeItem={x.largeItem}
+                      />
                     </div>
                   );
                 })}
@@ -103,12 +118,7 @@ function App() {
             }
           />
         )}
-
-        <Route path="/details" element={<DetailsFilm />} />
-
-        {/* {slide.map((x, index) => {
-        return <Content title={x.animeTitle} img={x.animeImg} />;
-      })} */}
+        <Route path="/details" element={<DetailsFilm video={detailFilm} />} />
       </Routes>
       <Footer />
     </div>
