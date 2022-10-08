@@ -7,6 +7,7 @@ import Header from "./Components/Header";
 import ListFilm from "./Components/ListFilm";
 import TypeFilm from "./Components/TypeFlim";
 import DetailsFilm from "./Components/DetailsFilm";
+import SearchFilm from "./Components/SearchFilm";
 
 function App() {
   const [data, setData] = useState([
@@ -47,6 +48,7 @@ function App() {
     // console.log(datadetail);
     setdetailFilm(datadetail);
   }
+
   const [toogleMenu, setToogleMenu] = useState(true);
   useEffect(() => {
     fetch("https://gogoanime.herokuapp.com/recent-release")
@@ -92,6 +94,7 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div className="customContainer">
       <Header b={setToogleMenu} />
@@ -118,6 +121,7 @@ function App() {
             }
           />
         )}
+        <Route path="/search/:keyword" element={<SearchFilm />} />
         <Route path="/details" element={<DetailsFilm video={detailFilm} />} />
       </Routes>
       <Footer />

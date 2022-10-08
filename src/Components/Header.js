@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import DetailsFilm from "./DetailsFilm";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const datafilm = [
@@ -260,6 +259,11 @@ const datafilm = [
   },
 ];
 function Header(props) {
+  const navigate = useNavigate();
+  function search() {
+    navigate(`/search/${find}`);
+  }
+  const [find, setFind] = useState("");
   const [toggleMenu, setToggleMenu] = useState(true);
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -307,7 +311,7 @@ function Header(props) {
                           return (
                             <li
                               key={index}
-                              className={x.column == 3 ? "col-4" : "col-6"}
+                              className={x.column === 3 ? "col-4" : "col-6"}
                             >
                               <Link className="sub-menu-link" to={y.link}>
                                 {y.type}
@@ -325,11 +329,18 @@ function Header(props) {
 
           <div className={styles.searchingBox}>
             <input
+              value={find}
               className={styles.searchingBoxValue}
               type="text"
               placeholder="Tìm tên phim, diễn viên... "
+              onChange={(e) => setFind(e.target.value)}
             />
-            <button className={styles.searchIcon}>
+            <button
+              onClick={() => {
+                search();
+              }}
+              className={styles.searchIcon}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

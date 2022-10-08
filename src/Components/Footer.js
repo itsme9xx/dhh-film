@@ -6,6 +6,11 @@ function Footer() {
     <>
       <div className={styles.footer}>
         <div className={`container ${styles.container}`}>
+          <div className={styles.pageUp}>
+            <a href="#">
+              <span className="material-symbols-outlined">expand_less</span>
+            </a>
+          </div>
           <div className="row">
             <div className={`col-md-2 d-none d-md-block ${styles.logo}`}>
               <img src="https://phimmoichills.net/dev/images/logo.png" alt="" />

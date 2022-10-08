@@ -3,7 +3,6 @@
 }
 .navbar {
   display: flex;
-
   justify-content: space-between;
 }
 .navbarItem {
@@ -20,6 +19,7 @@
     transform: translateY(0%);
   }
 }
+
 .navbarItem a {
   text-decoration: none;
   color: white;
@@ -53,6 +53,7 @@
   width: 210px;
   padding: 8px;
   outline: none;
+  padding-right: 30px !important;
 }
 .searchIcon {
   position: absolute;
@@ -126,7 +127,6 @@
     right: 0;
     background: #333;
     z-index: 999;
-
     animation: animation 0.3s linear;
   }
   .showNavbar {

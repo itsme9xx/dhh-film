@@ -1,9 +1,10 @@
 .footer {
-  margin-top: 40px;
+  margin-top: 60px;
   background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 .container {
-  padding-top: 20px;
+  padding-top: 60px;
 }
 .logo img {
   width: 160px;
@@ -13,7 +14,26 @@
   font-size: 14px;
   font-weight: 300;
 }
-
+.pageUp {
+  position: absolute;
+  left: 50%;
+  top: -22px;
+}
+.pageUp a {
+  display: inline-block;
+  font-size: 3rem;
+  height: 50px;
+  width: 50px;
+  background: red;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+  font-weight: 600;
+}
+.pageUp span {
+  font-size: 35px;
+}
 ul {
   list-style: none;
 }

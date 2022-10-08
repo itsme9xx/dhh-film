@@ -5,9 +5,12 @@ import Content from "./Content";
 import { Link } from "react-router-dom";
 
 function DetailsFilm(props) {
-  console.log(props);
   const [toogleVideo, settoogleVideo] = useState(false);
   const [hidden, setHidden] = useState(true);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={`container ${styles.total} `}>
       <div
@@ -31,7 +34,6 @@ function DetailsFilm(props) {
               style={{ background: "cover" }}
               alt=""
             />
-
             <span className={`${styles.playIcon} material-symbols-outlined`}>
               play_arrow
             </span>
@@ -110,10 +112,8 @@ function DetailsFilm(props) {
           </span>
         </div>
       </div>
-
       <Content />
     </div>
   );
 }
-
 export default DetailsFilm;
