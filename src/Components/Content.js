@@ -1,10 +1,9 @@
 import styles from "./Content.module.css";
 // Import css files
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import suggestFilmImg from "../assets/img/onepiece.jpg";
+import "slick-carousel/slick/slick.css";
 import FilmItem from "./FilmItem";
 
 function Content(props) {

@@ -272,7 +272,7 @@ function Header(props) {
       } else setToggleMenu(true);
     });
     return () => {
-      window.removeEventListener();
+      window.removeEventListener("resize", setToggleMenu);
     };
   }, []);
 

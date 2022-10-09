@@ -18,7 +18,6 @@ function SearchFilm(props) {
             ) {
               return true;
             }
-            // return true;
           })
         );
       });
@@ -26,7 +25,7 @@ function SearchFilm(props) {
 
   return (
     <div className={styles.searchFilm}>
-      <ListFilm video={items} />
+      <ListFilm video={items} Linkto={props.Linkto} />
     </div>
   );
 }

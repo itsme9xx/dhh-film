@@ -1,7 +1,18 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import ListFilm from "./ListFilm";
 import styles from "./TypeFilm.module.css";
 
 function TypeFilm(props) {
+  // console.log(props);
+  var navigate = useNavigate();
+  function allfilm() {
+    props.viewAllFilm(props.video);
+    navigate(`/allfilm`);
+  }
+  function viewListTagFilm(tagfilm) {
+    props.viewAllTagFilm(tagfilm);
+  }
   return (
     <div className={`container ${styles.heading}`}>
       <div className={styles.navHeading}>
@@ -11,18 +22,28 @@ function TypeFilm(props) {
         <ul className={styles.subHeading}>
           {props.tag.map((x, index) => {
             return (
-              <li key={index}>
-                <Link to="/details">{x}</Link>
+              <li
+                onClick={() => {
+                  viewListTagFilm(x);
+                }}
+                key={index}
+              >
+                <span>{x}</span>
               </li>
             );
           })}
         </ul>
       </div>
 
-      <Link className={styles.seeMore} to="/details">
+      <button
+        onClick={() => {
+          allfilm();
+        }}
+        className={styles.seeMore}
+      >
         Xem tất cả
         <span className="material-symbols-outlined ">arrow_right</span>
-      </Link>
+      </button>
     </div>
   );
 }

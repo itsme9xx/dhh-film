@@ -1,6 +1,5 @@
-import styles from "./FilmItem.module.css";
-import suggestFilmImg from "../assets/img/onepiece.jpg";
 import { Link } from "react-router-dom";
+import styles from "./FilmItem.module.css";
 
 function FilmItem(props) {
   return (

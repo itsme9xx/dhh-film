@@ -1,6 +1,7 @@
 import FilmItem from "./FilmItem";
 import styles from "./ListFilm.module.css";
 function ListFilm(props) {
+  // console.log(props);
   return (
     <div className="container">
       <div className={styles.grid}>

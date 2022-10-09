@@ -1,8 +1,7 @@
-import styles from "./DetailsFilm.module.css";
-import { useState, useEffect } from "react";
-import Headers from "./Header";
-import Content from "./Content";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Content from "./Content";
+import styles from "./DetailsFilm.module.css";
 
 function DetailsFilm(props) {
   const [toogleVideo, settoogleVideo] = useState(false);

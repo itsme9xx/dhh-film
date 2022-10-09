@@ -1,20 +1,21 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { useState, useEffect, Fragment } from "react";
+import AllFilm from "./Components/AllFilm";
 import Content from "./Components/Content";
+import DetailsFilm from "./Components/DetailsFilm";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import ListFilm from "./Components/ListFilm";
-import TypeFilm from "./Components/TypeFlim";
-import DetailsFilm from "./Components/DetailsFilm";
 import SearchFilm from "./Components/SearchFilm";
+import TypeFilm from "./Components/TypeFlim";
 
 function App() {
   const [data, setData] = useState([
     {
       title: "PHIM LẺ MỚI CẬP NHẬT",
       largeItem: true,
-      tag: ["Hành động", "Hoạt hình", "Kinh dị", "Hài hước"],
+      tag: ["Action", "Adventure", "Comedy", "Dementia"],
       video: [],
     },
     {
@@ -43,40 +44,52 @@ function App() {
     },
   ]);
   const [detailFilm, setdetailFilm] = useState({});
+
   function Linkto(datadetail) {
-    componentDidMount();
     // console.log(datadetail);
     setdetailFilm(datadetail);
   }
-
+  function viewAllFilm(alllistfilm) {
+    setListFilm(alllistfilm);
+  }
+  function viewAllTagFilm(alltagfilm) {
+    fetch(`https://gogoanime.herokuapp.com/genre/${alltagfilm.toLowerCase()}`)
+      .then((response) => response.json())
+      .then((animelist) => {
+        const filmrecent = data[0];
+        filmrecent.video = animelist;
+        setData([...data]);
+      });
+  }
   const [toogleMenu, setToogleMenu] = useState(true);
+  const [listfilm, setListFilm] = useState([]);
   useEffect(() => {
     fetch("https://gogoanime.herokuapp.com/recent-release")
       .then((response) => response.json())
       .then((animelist) => {
         const filmrecent = data[0];
-        filmrecent.video = animelist.filter((x, index) => index < 12);
+        filmrecent.video = animelist;
         setData([...data]); //speard operate
       });
     fetch("https://gogoanime.herokuapp.com/popular")
       .then((response) => response.json())
       .then((animelist) => {
         const filmrecent = data[3];
-        filmrecent.video = animelist.filter((x, index) => index < 12);
+        filmrecent.video = animelist;
         setData([...data]);
       });
     fetch("https://gogoanime.herokuapp.com/anime-movies")
       .then((response) => response.json())
       .then((animelist) => {
         const filmrecent = data[1];
-        filmrecent.video = animelist.filter((x, index) => index < 12);
+        filmrecent.video = animelist;
         setData([...data]);
       });
     fetch("https://gogoanime.herokuapp.com/genre/action")
       .then((response) => response.json())
       .then((animelist) => {
         const filmrecent = data[2];
-        filmrecent.video = animelist.filter((x, index) => index < 12);
+        filmrecent.video = animelist;
         setData([...data]);
       });
     fetch("https://gogoanime.herokuapp.com/top-airing")
@@ -87,10 +100,6 @@ function App() {
         setData([...data]);
       });
   }, []);
-
-  function componentDidMount() {
-    window.scrollTo(0, 0);
-  }
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -108,10 +117,16 @@ function App() {
                 {data.map((x, index) => {
                   return (
                     <div key={index}>
-                      <TypeFilm title={x.title} tag={x.tag} />
+                      <TypeFilm
+                        viewAllTagFilm={viewAllTagFilm}
+                        viewAllFilm={viewAllFilm}
+                        video={x.video}
+                        title={x.title}
+                        tag={x.tag}
+                      />
                       <ListFilm
                         Linkto={Linkto}
-                        video={x.video}
+                        video={x.video.filter((x, index) => index < 12)}
                         largeItem={x.largeItem}
                       />
                     </div>
@@ -121,7 +136,12 @@ function App() {
             }
           />
         )}
-        <Route path="/search/:keyword" element={<SearchFilm />} />
+        <Route path="/allfilm" element={<AllFilm video={listfilm} />} />
+
+        <Route
+          path="/search/:keyword"
+          element={<SearchFilm Linkto={Linkto} />}
+        />
         <Route path="/details" element={<DetailsFilm video={detailFilm} />} />
       </Routes>
       <Footer />

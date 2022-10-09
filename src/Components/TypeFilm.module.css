@@ -42,7 +42,7 @@ a {
   background-color: #504d49;
   border: 1px solid rgb(5, 5, 3);
 }
-.subHeading li a {
+.subHeading li span {
   color: white;
 }
 .subHeading li:hover {
