@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ListFilm from "./ListFilm";
 import styles from "./SearchFilm.module.css";
 function SearchFilm(props) {
-  const params = useParams();
+  const param = useParams();
   const [items, setItems] = useState([]);
   useEffect(() => {
     fetch("https://gogoanime.herokuapp.com/anime-movies")
@@ -14,14 +14,14 @@ function SearchFilm(props) {
             if (
               item.animeTitle
                 .toLowerCase()
-                .includes(params.keyword.toLowerCase())
+                .includes(param.keyword.toLowerCase())
             ) {
               return true;
             }
           })
         );
       });
-  }, [params.keyword]);
+  }, [param.keyword]);
 
   return (
     <div className={styles.searchFilm}>

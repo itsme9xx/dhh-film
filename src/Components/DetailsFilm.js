@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Content from "./Content";
 import styles from "./DetailsFilm.module.css";
 
 function DetailsFilm(props) {
+  const param = useParams();
   const [toogleVideo, settoogleVideo] = useState(false);
   const [hidden, setHidden] = useState(true);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   return (
     <div className={`container ${styles.total} `}>
       <div

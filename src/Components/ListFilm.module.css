@@ -1,4 +1,5 @@
 .grid {
+  position: relative;
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   grid-column-gap: 5px;
@@ -7,6 +8,14 @@
 .largeItem {
   grid-column: 1 / 3;
   grid-row: 1 / 3;
+}
+.modal {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 @media (max-width: 991px) {
   .grid {

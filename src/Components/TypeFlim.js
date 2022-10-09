@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, CSSProperties } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ListFilm from "./ListFilm";
 import styles from "./TypeFilm.module.css";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 function TypeFilm(props) {
-  // console.log(props);
   var navigate = useNavigate();
   function allfilm() {
     props.viewAllFilm(props.video);
     navigate(`/allfilm`);
   }
+
   function viewListTagFilm(tagfilm) {
-    props.viewAllTagFilm(tagfilm);
+    props.viewAllTagFilm(tagfilm, props.id);
   }
   return (
     <div className={`container ${styles.heading}`}>
@@ -32,6 +33,7 @@ function TypeFilm(props) {
               </li>
             );
           })}
+          ;
         </ul>
       </div>
 

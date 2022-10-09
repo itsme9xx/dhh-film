@@ -19,91 +19,91 @@ const datafilm = [
     title: "THỂ LOẠI",
     item: [
       {
-        type: "Phim Hành Động",
+        type: "Action",
         link: "/",
       },
       {
-        type: "Phim Võ Thuật",
+        type: "Adventure",
         link: "/",
       },
       {
-        type: "Phim Tình Cảm",
+        type: "Cars",
         link: "/",
       },
       {
-        type: "Phim Hoạt Hình",
+        type: "Comedy",
         link: "/",
       },
       {
-        type: "Phim Hài Hước",
+        type: "Crime",
         link: "/",
       },
       {
-        type: "Phim Viễn Tưởng",
+        type: "Dementia",
         link: "/",
       },
       {
-        type: "Phim Cổ Trang",
+        type: "Demons",
         link: "/",
       },
       {
-        type: "Phim Phiêu Lưu",
+        type: "Drama",
         link: "/",
       },
       {
-        type: "Phim Tâm Lý",
+        type: "Dub",
         link: "/",
       },
       {
-        type: "Phim Khoa Học",
+        type: "Ecchi",
         link: "/",
       },
       {
-        type: "Phim Phim Hình Sự",
+        type: "Family",
         link: "/",
       },
       {
-        type: "Phim Ma - Kinh Dị",
+        type: "Fantasy",
         link: "/",
       },
       {
-        type: "Phim Chiến Tranh",
+        type: "Game",
         link: "/",
       },
       {
-        type: "Phim Âm Nhạc",
+        type: "Gourmet",
         link: "/",
       },
       {
-        type: "Phim Thể Thao",
+        type: "Harem",
         link: "/",
       },
       {
-        type: "Phim Thần Thoại",
+        type: "Historical",
         link: "/",
       },
       {
-        type: "Game show",
+        type: "Honor",
         link: "/",
       },
       {
-        type: "Phim Truyền Hình",
+        type: "Josei",
         link: "/",
       },
       {
-        type: "Phim Chiếu Rạp",
+        type: "Kids",
         link: "/",
       },
       {
-        type: "Phim Anime",
+        type: "Magic",
         link: "/",
       },
       {
-        type: "Phim Sắp Chiếu",
+        type: "Martial-arts",
         link: "/",
       },
       {
-        type: "Phim Thuyết Minh",
+        type: "Mecha",
         link: "/",
       },
     ],
@@ -260,6 +260,9 @@ const datafilm = [
 ];
 function Header(props) {
   const navigate = useNavigate();
+  function allfilm(yy) {
+    navigate(`/genres/${yy}`);
+  }
   function search() {
     navigate(`/search/${find}`);
   }
@@ -310,6 +313,9 @@ function Header(props) {
                         {x.item.map((y, index) => {
                           return (
                             <li
+                              onClick={() => {
+                                allfilm(y.type);
+                              }}
                               key={index}
                               className={x.column === 3 ? "col-4" : "col-6"}
                             >
