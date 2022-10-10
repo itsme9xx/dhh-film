@@ -138,46 +138,21 @@ const datafilm = [
     link: "#phimchieurap",
   },
   {
-    title: "PHIM SẮP CHIẾU",
-    item: [],
-    id: 3,
-    link: "#phimsapchieu",
-  },
-  {
     title: "PHIM THỊNH HÀNH",
     item: [],
     id: 4,
     link: "#phimthinhhanh",
   },
   {
+    title: "PHIM SẮP CHIẾU",
+    item: [],
+    id: 3,
+    link: "#phimsapchieu",
+  },
+  {
     title: "TOP PHIM",
     active: true,
-    item: [
-      {
-        type: "TOP IMDB",
-        link: "/",
-      },
-      {
-        type: "Phim Hot",
-        link: "/",
-      },
-      {
-        type: "Phim Netflix",
-        link: "/",
-      },
-      {
-        type: "Phim DC Comics",
-        link: "/",
-      },
-      {
-        type: "Phim Marvel",
-        link: "/",
-      },
-      {
-        type: "Phim HD",
-        link: "/",
-      },
-    ],
+    item: [],
   },
 ];
 function Header(props) {

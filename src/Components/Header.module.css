@@ -65,6 +65,7 @@
   background-color: white;
 }
 .active a {
+  cursor: pointer;
   color: #ff9601 !important;
 }
 .showNavbar,
