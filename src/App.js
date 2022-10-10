@@ -47,6 +47,7 @@ function App() {
       tag: [],
       largeItem: false,
       video: [],
+      id: "phimsapchieu",
     },
   ]);
   const navigate = useNavigate();
