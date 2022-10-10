@@ -22,7 +22,7 @@
 
 .navbarItem a {
   text-decoration: none;
-  color: white;
+  color: white !important;
   font-size: 15px;
   font-weight: 600;
 }
@@ -65,7 +65,7 @@
   background-color: white;
 }
 .active a {
-  color: #ff9601;
+  color: #ff9601 !important;
 }
 .showNavbar,
 .country,

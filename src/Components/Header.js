@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AllFilm from "./AllFilm";
 import styles from "./Header.module.css";
 
 const datafilm = [
   {
-    title: "PHIMMOI",
-    item: [],
-  },
-  {
     title: "PHIM LẺ",
     item: [],
+    id: 0,
+    link: "#phimle",
   },
   {
     title: "PHIM BỘ",
     item: [],
+    id: 1,
+    link: "#phimbo",
   },
   {
     title: "THỂ LOẠI",
@@ -110,111 +111,22 @@ const datafilm = [
     column: 3,
   },
   {
-    title: "QUỐC GIA",
-    item: [
-      {
-        type: "Phim Trung Quốc",
-        link: "/",
-      },
-      {
-        type: "Phim Hàn Quốc",
-        link: "/",
-      },
-      {
-        type: "Phim Nhật Bản",
-        link: "/",
-      },
-      {
-        type: "Phim Âu Mỹ",
-        link: "/",
-      },
-      {
-        type: "Phim Thái Lan",
-        link: "/",
-      },
-      {
-        type: "Phim Đài Loan",
-        link: "/",
-      },
-      {
-        type: "Phim Tổng Hợp",
-        link: "/",
-      },
-      {
-        type: "Phim Hồng Kông",
-        link: "/",
-      },
-      {
-        type: "Phim Ấn Độ",
-        link: "/",
-      },
-    ],
-  },
-  {
     title: "NĂM PHÁT HÀNH",
     item: [
       {
-        type: "Phim 2022",
+        type: "2023",
         link: "/",
       },
       {
-        type: "Phim 2021",
+        type: "2022",
         link: "/",
       },
       {
-        type: "Phim 2020",
+        type: "2021",
         link: "/",
       },
       {
-        type: "Phim 2019",
-        link: "/",
-      },
-      {
-        type: "Phim 2018",
-        link: "/",
-      },
-      {
-        type: "Phim 2017",
-        link: "/",
-      },
-      {
-        type: "Phim 2016",
-        link: "/",
-      },
-      {
-        type: "Phim 2015",
-        link: "/",
-      },
-      {
-        type: "Phim 2014",
-        link: "/",
-      },
-      {
-        type: "Phim 2013",
-        link: "/",
-      },
-      {
-        type: "Phim 2012",
-        link: "/",
-      },
-      {
-        type: "Phim 2011",
-        link: "/",
-      },
-      {
-        type: "Phim 2010",
-        link: "/",
-      },
-      {
-        type: "Phim 2009",
-        link: "/",
-      },
-      {
-        type: "Phim 2008",
-        link: "/",
-      },
-      {
-        type: "Phim Trước 2008",
+        type: "2020",
         link: "/",
       },
     ],
@@ -222,10 +134,20 @@ const datafilm = [
   {
     title: "PHIM CHIẾU RẠP",
     item: [],
+    id: 2,
+    link: "#phimchieurap",
   },
   {
-    title: "TRAILER",
+    title: "PHIM SẮP CHIẾU",
     item: [],
+    id: 3,
+    link: "#phimsapchieu",
+  },
+  {
+    title: "PHIM THỊNH HÀNH",
+    item: [],
+    id: 4,
+    link: "#phimthinhhanh",
   },
   {
     title: "TOP PHIM",
@@ -260,12 +182,14 @@ const datafilm = [
 ];
 function Header(props) {
   const navigate = useNavigate();
+
   function allfilm(yy) {
-    navigate(`/genres/${yy}`);
+    props.viewHeaderfilm(yy);
   }
   function search() {
     navigate(`/search/${find}`);
   }
+
   const [find, setFind] = useState("");
   const [toggleMenu, setToggleMenu] = useState(true);
   useEffect(() => {
@@ -303,11 +227,11 @@ function Header(props) {
                 return (
                   <li
                     key={index}
-                    className={`${x.active ? styles.active : ""} ${
+                    className={`${x.active && styles.active} ${
                       styles.showNavbar
                     }`}
                   >
-                    <Link>{x.title}</Link>
+                    <a href={x.link}>{x.title}</a>
                     {x.item.length > 0 && (
                       <ul className={`row ${styles.listNavbar}`}>
                         {x.item.map((y, index) => {

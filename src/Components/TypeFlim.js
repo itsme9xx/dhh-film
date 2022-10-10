@@ -1,4 +1,4 @@
-import { useEffect, useState, CSSProperties } from "react";
+import { useEffect, useState, CSSProperties, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ListFilm from "./ListFilm";
 import styles from "./TypeFilm.module.css";
@@ -15,11 +15,9 @@ function TypeFilm(props) {
     props.viewAllTagFilm(tagfilm, props.id);
   }
   return (
-    <div className={`container ${styles.heading}`}>
+    <div id={props.idtarget} className={`container ${styles.heading}`}>
       <div className={styles.navHeading}>
-        <Link to="/details" className={styles.title}>
-          {props.title}
-        </Link>
+        <Link className={styles.title}>{props.title}</Link>
         <ul className={styles.subHeading}>
           {props.tag.map((x, index) => {
             return (

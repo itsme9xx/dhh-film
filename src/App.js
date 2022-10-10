@@ -1,5 +1,5 @@
 import { useEffect, useState, CSSProperties } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import AllFilm from "./Components/AllFilm";
 import Content from "./Components/Content";
@@ -21,19 +21,20 @@ function App() {
       id: "phimle",
     },
     {
-      title: "PHIM CHIẾU RẠP",
+      title: "PHIM BỘ MỚI CẬP NHẬT",
       largeItem: true,
       tag: ["2023", "2022", "2021", "2020"],
       video: [],
-      id: "phimchieurap",
+      id: "phimbo",
     },
     {
-      title: "PHIM BỘ MỚI CẬP NHẬT",
+      title: "PHIM CHIẾU RẠP",
       largeItem: true,
       tag: ["Demons", "Drama", "Dub", "Ecchi"],
       video: [],
-      id: "phimbo",
+      id: "phimchieurap",
     },
+
     {
       title: "PHIM THỊNH HÀNH",
       largeItem: true,
@@ -48,7 +49,9 @@ function App() {
       video: [],
     },
   ]);
+  const navigate = useNavigate();
   const [detailFilm, setdetailFilm] = useState({});
+
   function Linkto(datadetail) {
     // console.log(datadetail);
     setdetailFilm(datadetail);
@@ -56,6 +59,22 @@ function App() {
   function viewAllFilm(alllistfilm) {
     setListFilm(alllistfilm);
   }
+  function viewHeaderfilm(alllistfilm2) {
+    const endpoint = isNaN(alllistfilm2)
+      ? `genre/${alllistfilm2}`
+      : "anime-movies";
+    navigate(`/filter/${alllistfilm2}`);
+    fetch(`https://gogoanime.herokuapp.com/${endpoint.toLowerCase()}`)
+      .then((response) => response.json())
+      .then((animelist) => {
+        endpoint === "anime-movies"
+          ? setHeaderFilm(
+              animelist.filter((item) => item.releasedDate === alllistfilm2)
+            )
+          : setHeaderFilm([...animelist]);
+      });
+  }
+  const [headerfilm, setHeaderFilm] = useState([]);
   const [loading, setLoading] = useState({});
   function viewAllTagFilm(alltagfilm, index) {
     setLoading({ [data[index].id]: true });
@@ -74,50 +93,29 @@ function App() {
   }
   const [toogleMenu, setToogleMenu] = useState(true);
   const [listfilm, setListFilm] = useState([]);
+
   useEffect(() => {
-    fetch("https://gogoanime.herokuapp.com/recent-release")
-      .then((response) => response.json())
-      .then((animelist) => {
-        const filmrecent = data[0];
-        filmrecent.video = animelist;
-        setData([...data]); //speard operate
-      });
-    fetch("https://gogoanime.herokuapp.com/popular")
-      .then((response) => response.json())
-      .then((animelist) => {
-        const filmrecent = data[3];
-        filmrecent.video = animelist;
-        setData([...data]);
-      });
-    fetch("https://gogoanime.herokuapp.com/anime-movies")
-      .then((response) => response.json())
-      .then((animelist) => {
-        const filmrecent = data[1];
-        filmrecent.video = animelist;
-        setData([...data]);
-      });
-    fetch("https://gogoanime.herokuapp.com/genre/action")
-      .then((response) => response.json())
-      .then((animelist) => {
-        const filmrecent = data[2];
-        filmrecent.video = animelist;
-        setData([...data]);
-      });
-    fetch("https://gogoanime.herokuapp.com/top-airing")
-      .then((response) => response.json())
-      .then((animelist) => {
-        const filmrecent = data[4];
-        filmrecent.video = animelist.filter((x, index) => index < 10);
-        setData([...data]);
-      });
-  }, []);
-  useEffect(() => {
+    function fetchdata(url, datafilm, length = undefined) {
+      fetch(url)
+        .then((response) => response.json())
+        .then((animelist) => {
+          const filmrecent = datafilm;
+          filmrecent.video = length
+            ? animelist.filter((x, index) => index < length)
+            : animelist;
+          setData([...data]);
+        });
+    }
+    fetchdata("https://gogoanime.herokuapp.com/recent-release", data[0]);
+    fetchdata("https://gogoanime.herokuapp.com/popular", data[3]);
+    fetchdata("https://gogoanime.herokuapp.com/anime-movies", data[1]);
+    fetchdata("https://gogoanime.herokuapp.com/genre/action", data[2]);
+    fetchdata("https://gogoanime.herokuapp.com/top-airing", data[4], 10);
     window.scrollTo(0, 0);
   }, []);
-
   return (
     <div className="customContainer">
-      <Header b={setToogleMenu} />
+      <Header b={setToogleMenu} viewHeaderfilm={viewHeaderfilm} />
       <Routes>
         {toogleMenu && (
           <Route
@@ -129,6 +127,7 @@ function App() {
                   return (
                     <div key={index}>
                       <TypeFilm
+                        idtarget={x.id}
                         id={index}
                         viewAllTagFilm={viewAllTagFilm}
                         viewAllFilm={viewAllFilm}
@@ -150,8 +149,10 @@ function App() {
           />
         )}
         <Route path="/allfilm/" element={<AllFilm video={listfilm} />} />
-        <Route path="/genres/:keyword" element={<AllFilm video={listfilm} />} />
-
+        <Route
+          path="/filter/:keyword"
+          element={<AllFilm video={headerfilm} />}
+        />
         <Route
           path="/search/:keyword"
           element={<SearchFilm Linkto={Linkto} />}
