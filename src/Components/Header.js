@@ -164,7 +164,6 @@ function Header(props) {
   function search() {
     navigate(`/search/${find}`);
   }
-
   const [find, setFind] = useState("");
   const [toggleMenu, setToggleMenu] = useState(true);
   useEffect(() => {
@@ -196,6 +195,7 @@ function Header(props) {
               <img src="https://phimmoichills.net/dev/images/logo.png" alt="" />
             </Link>
           </div>
+
           {toggleMenu && (
             <ul className={styles.navbarItem}>
               {datafilm.map((x, index) => {

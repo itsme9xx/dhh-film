@@ -65,7 +65,7 @@ function App() {
       ? `genre/${alllistfilm2}`
       : "anime-movies";
     navigate(`/filter/${alllistfilm2}`);
-    fetch(`https://gogoanime.herokuapp.com/${endpoint.toLowerCase()}`)
+    fetch(`https://gogoanime.consumet.org/${endpoint.toLowerCase()}`)
       .then((response) => response.json())
       .then((animelist) => {
         endpoint === "anime-movies"
@@ -80,7 +80,7 @@ function App() {
   function viewAllTagFilm(alltagfilm, index) {
     setLoading({ [data[index].id]: true });
     const endpoint = isNaN(alltagfilm) ? `genre/${alltagfilm}` : "anime-movies";
-    fetch(`https://gogoanime.herokuapp.com/${endpoint.toLowerCase()}`)
+    fetch(`https://gogoanime.consumet.org/${endpoint.toLowerCase()}`)
       .then((response) => response.json())
       .then((animelist) => {
         const filmrecent = data[index];
@@ -107,11 +107,11 @@ function App() {
           setData([...data]);
         });
     }
-    fetchdata("https://gogoanime.herokuapp.com/recent-release", data[0]);
-    fetchdata("https://gogoanime.herokuapp.com/popular", data[3]);
-    fetchdata("https://gogoanime.herokuapp.com/anime-movies", data[1]);
-    fetchdata("https://gogoanime.herokuapp.com/genre/action", data[2]);
-    fetchdata("https://gogoanime.herokuapp.com/top-airing", data[4], 10);
+    fetchdata("https://gogoanime.consumet.org/recent-release", data[0]);
+    fetchdata("https://gogoanime.consumet.org/popular", data[3]);
+    fetchdata("https://gogoanime.consumet.org/anime-movies", data[1]);
+    fetchdata("https://gogoanime.consumet.org/genre/action", data[2]);
+    fetchdata("https://gogoanime.consumet.org/top-airing", data[4], 10);
     window.scrollTo(0, 0);
   }, []);
   return (

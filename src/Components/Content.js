@@ -15,7 +15,7 @@ function Content(props) {
   ]);
 
   useEffect(() => {
-    fetch("https://gogoanime.herokuapp.com/anime-movies")
+    fetch("https://gogoanime.consumet.org/anime-movies")
       .then((response) => response.json())
       .then((animelist) => {
         setSlide([...animelist]);
