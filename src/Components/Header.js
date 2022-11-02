@@ -192,7 +192,7 @@ function Header(props) {
           </div>
           <div className={styles.logo}>
             <Link to="/">
-              <img src="https://phimmoichills.net/dev/images/logo.png" alt="" />
+              <img src={require("../assets/img/logo.png")} alt="" />
             </Link>
           </div>
 
