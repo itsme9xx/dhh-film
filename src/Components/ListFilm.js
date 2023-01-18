@@ -9,6 +9,7 @@ function ListFilm(props) {
     top: "1%",
     left: "50%",
   };
+
   return (
     <div className="container">
       <div className={styles.grid}>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
+import MenuIcon from "@material-ui/icons/Menu";
 
 function Footer() {
   return (

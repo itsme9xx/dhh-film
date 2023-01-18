@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ListFilm from "./ListFilm";
 import styles from "./SearchFilm.module.css";
 function SearchFilm(props) {
+  console.log(props);
   const param = useParams();
   const [items, setItems] = useState([]);
   useEffect(() => {

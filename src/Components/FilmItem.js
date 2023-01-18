@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./FilmItem.module.css";
+import MenuIcon from "@material-ui/icons/Menu";
 
 function FilmItem(props) {
   const navigate = useNavigate();

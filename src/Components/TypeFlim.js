@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ListFilm from "./ListFilm";
 import styles from "./TypeFilm.module.css";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import MenuIcon from "@material-ui/icons/Menu";
 
 function TypeFilm(props) {
   var navigate = useNavigate();

@@ -114,6 +114,7 @@ function App() {
     fetchdata("https://gogoanime.consumet.org/top-airing", data[4], 10);
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div className="customContainer">
       <Header b={setToogleMenu} viewHeaderfilm={viewHeaderfilm} />

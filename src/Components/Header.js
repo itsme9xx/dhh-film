@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AllFilm from "./AllFilm";
 import styles from "./Header.module.css";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const datafilm = [
   {
@@ -166,6 +167,7 @@ function Header(props) {
   }
   const [find, setFind] = useState("");
   const [toggleMenu, setToggleMenu] = useState(true);
+
   useEffect(() => {
     window.addEventListener("resize", () => {
       if (document.body.offsetWidth < 1200) {
@@ -195,7 +197,6 @@ function Header(props) {
               <img src={require("../assets/img/logo.png")} alt="" />
             </Link>
           </div>
-
           {toggleMenu && (
             <ul className={styles.navbarItem}>
               {datafilm.map((x, index) => {
@@ -231,7 +232,6 @@ function Header(props) {
               })}
             </ul>
           )}
-
           <div className={styles.searchingBox}>
             <input
               value={find}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Content from "./Content";
 import styles from "./DetailsFilm.module.css";
+import MenuIcon from "@material-ui/icons/Menu";
 
 function DetailsFilm(props) {
   const param = useParams();
