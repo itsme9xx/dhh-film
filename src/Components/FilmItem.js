@@ -15,9 +15,10 @@ function FilmItem(props) {
       }}
       className={styles.slideBlock}
     >
-      <span className={`${styles.playIcon} material-symbols-outlined`}>
+      {/* <span className={`${styles.playIcon} material-symbols-outlined`}>
         play_arrow
-      </span>
+      </span> */}
+      <span className={`${styles.playIcon} material-symbols-outlined`}></span>
       <img src={props.data.animeImg} alt="" />
       <h3 className={styles.title}>{props.data.animeTitle}</h3>
     </div>
