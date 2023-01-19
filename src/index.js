@@ -8,6 +8,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,200"
+/>;
 <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css"></link>;
 <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css"></link>;
 
