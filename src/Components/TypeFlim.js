@@ -43,8 +43,15 @@ function TypeFilm(props) {
         className={styles.seeMore}
       >
         Xem tất cả
-        {/* <span className="material-symbols-outlined ">arrow_right</span> */}
-        <span className="material-symbols-outlined "></span>
+        <i
+          class="fa-sharp fa-solid fa-caret-right"
+          style={{
+            marginLeft: 5,
+            display: "flex",
+            alignItems: "center",
+            height: 20,
+          }}
+        ></i>
       </button>
     </div>
   );

@@ -7,7 +7,7 @@ function SearchFilm(props) {
   const param = useParams();
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch("https://gogoanime.consumet.org/anime-movies")
+    fetch("https://gogoanime.consumet.stream/anime-movies")
       .then((response) => response.json())
       .then((animelist) => {
         setItems(

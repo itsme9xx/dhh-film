@@ -9,8 +9,7 @@ function Footer() {
         <div className={`container ${styles.container}`}>
           <div className={styles.pageUp}>
             <a href="#">
-              {/* <span className="material-symbols-outlined">expand_less</span> */}
-              <span className="material-symbols-outlined"></span>
+              <i class="fa-regular fa-angle-up" style={{ fontSize: 40 }}></i>
             </a>
           </div>
           <div className="row">
