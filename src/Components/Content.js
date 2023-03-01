@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import FilmItem from "./FilmItem";
 
 function Content(props) {
-  console.log("content", props);
+  // console.log("content", props);
   const [slide, setSlide] = useState([
     {
       title: "",

@@ -55,7 +55,7 @@ function App() {
   const [detailFilm, setdetailFilm] = useState({});
 
   function Linkto(datadetail) {
-    console.log("data", datadetail);
+    // console.log("data", datadetail);
     setdetailFilm(datadetail);
   }
   function viewAllFilm(alllistfilm) {

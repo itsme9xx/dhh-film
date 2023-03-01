@@ -6,6 +6,21 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 function DetailsFilm(props) {
   console.log("detailfilm", props);
+  const [infoFilm, setInfoFilm] = useState({});
+  let endpoint;
+  if (props.video.animeId) {
+    endpoint = `anime-details/${props.video.animeId}`;
+  } else {
+    endpoint = "anime-movies";
+  }
+
+  useEffect(() => {
+    fetch(`https://anime-api-sandy.vercel.app/api/${endpoint.toLowerCase()}`)
+      .then((res) => res.json())
+      .then((result) => setInfoFilm(result));
+  }, [endpoint]);
+
+  console.log("result", infoFilm);
   const param = useParams();
   const [toogleVideo, settoogleVideo] = useState(false);
   const [hidden, setHidden] = useState(true);
@@ -84,16 +99,18 @@ function DetailsFilm(props) {
           </li>
           <li>
             <label>Thể loại: </label>
-            <span> Phim hoạt hình</span>
+            <span> {infoFilm.genres ? infoFilm.genres : "Drama"}</span>
           </li>
           <li>
             <label>Năm phát hành : </label>
-            <span> 2009</span>
+            <span>
+              {props.video.releasedDate ? props.video.releasedDate : "2000"}
+            </span>
           </li>
 
           <li>
-            <label>Đạo diễn : </label>
-            <span> Ichika </span>
+            <label>Tình trạng : </label>
+            <span> {infoFilm.status ? infoFilm.status : "Đã hoàn thành"} </span>
           </li>
           <li>
             <label>Quốc gia : </label>
@@ -101,25 +118,16 @@ function DetailsFilm(props) {
           </li>
           <li>
             <label>Điểm IMDB : </label>
-            <span> 8.2</span>
+            <span> 9.9</span>
           </li>
           <li>
-            <label>Diễn viên : </label>
-            <span> 奈良シカマル, うずまきナルト, マイト・ガ</span>
+            <label>Tên khác : </label>
+            <span>{infoFilm.otherNames ? infoFilm.otherNames : "Unknown"}</span>
           </li>
         </div>
         <div className={styles.contentFilm}>
           <p className={styles.textFilm}>Nội dung phim : </p>
-          <span>
-            Câu chuyện xoay quanh Uzumaki Naruto, một ninja trẻ muốn tìm cách
-            khẳng định mình để được mọi người công nhận và nuôi ước mơ trở thành
-            Hokage - người lãnh đạo Làng Lá. Cốt truyện được chia làm hai phần –
-            phần đầu lấy bối cảnh vài năm trước tuổi thiếu niên (Naruto
-            Dattebayo) và phần thứ hai là ở tuổi thiếu niên của Naruto (Naruto
-            Shippuden). Series dựa trên hai Yomikiri của Kishimoto: Karakuri
-            (1995), đã giúp Kishimoto đạt danh hiệu Hop Step Award hàng tháng
-            của Shueisha ở những năm tiếp theo, và Naruto (1997).
-          </span>
+          <span>{infoFilm.synopsis ? infoFilm.synopsis : `Phim hay`}</span>
         </div>
       </div>
       <Content Linkto={props.Linkto} Special={props.video} />
