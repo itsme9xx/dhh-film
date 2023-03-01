@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import FilmItem from "./FilmItem";
 
 function Content(props) {
+  console.log("content", props);
   const [slide, setSlide] = useState([
     {
       title: "",
@@ -66,7 +67,12 @@ function Content(props) {
           {slide.map((x, index) => {
             return (
               <div key={index}>
-                <FilmItem Linkto={props.Linkto} key={index} data={x} />
+                <FilmItem
+                  Linkto={props.Linkto}
+                  key={index}
+                  data={x}
+                  Special={props.Special}
+                />
               </div>
             );
           })}

@@ -3,6 +3,8 @@ import styles from "./ListFilm.module.css";
 import { useEffect, useState, CSSProperties } from "react";
 import ScaleLoader from "react-spinners/ScaleLoader";
 function ListFilm(props) {
+  // console.log(props);
+
   const override = {
     display: "block",
     position: "absolute",

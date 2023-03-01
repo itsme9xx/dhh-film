@@ -10,11 +10,13 @@
 }
 .logo img {
   width: 160px;
+  cursor: pointer;
 }
 .footer h3 {
   color: white;
   font-size: 14px;
   font-weight: 300;
+  cursor: pointer;
 }
 .pageUp {
   position: absolute;

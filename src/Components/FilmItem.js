@@ -3,6 +3,7 @@ import styles from "./FilmItem.module.css";
 import MenuIcon from "@material-ui/icons/Menu";
 
 function FilmItem(props) {
+  // console.log("filmItem", props);
   const navigate = useNavigate();
   function goToDetail() {
     navigate(`/details/${props.data.animeId}`);

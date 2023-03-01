@@ -160,6 +160,7 @@ function Header(props) {
   const navigate = useNavigate();
 
   function allfilm(yy) {
+    // console.log(yy);
     props.viewHeaderfilm(yy);
   }
   function search() {

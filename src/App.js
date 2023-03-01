@@ -55,7 +55,7 @@ function App() {
   const [detailFilm, setdetailFilm] = useState({});
 
   function Linkto(datadetail) {
-    // console.log(datadetail);
+    console.log("data", datadetail);
     setdetailFilm(datadetail);
   }
   function viewAllFilm(alllistfilm) {
@@ -66,15 +66,15 @@ function App() {
       ? `genre/${alllistfilm2}`
       : "anime-movies";
     navigate(`/filter/${alllistfilm2}`);
-    fetch(
-      `https://anime-api-sandy.vercel.app/api/${endpoint.toLowerCase()}`
-    ).then((animelist) => {
-      endpoint === "anime-movies"
-        ? setHeaderFilm(
-            animelist.filter((item) => item.releasedDate === alllistfilm2)
-          )
-        : setHeaderFilm([...animelist]);
-    });
+    fetch(`https://anime-api-sandy.vercel.app/api/${endpoint.toLowerCase()}`)
+      .then((response) => response.json())
+      .then((animelist) => {
+        endpoint === "anime-movies"
+          ? setHeaderFilm(
+              animelist.filter((item) => item.releasedDate === alllistfilm2)
+            )
+          : setHeaderFilm([...animelist]);
+      });
   }
   const [headerfilm, setHeaderFilm] = useState([]);
   const [loading, setLoading] = useState({});
@@ -163,7 +163,7 @@ function App() {
         />
         <Route
           path="/details/:keyword"
-          element={<DetailsFilm video={detailFilm} />}
+          element={<DetailsFilm video={detailFilm} Linkto={Linkto} />}
         />
       </Routes>
       <Footer />

@@ -5,9 +5,11 @@ import styles from "./DetailsFilm.module.css";
 import MenuIcon from "@material-ui/icons/Menu";
 
 function DetailsFilm(props) {
+  console.log("detailfilm", props);
   const param = useParams();
   const [toogleVideo, settoogleVideo] = useState(false);
   const [hidden, setHidden] = useState(true);
+  // console.log(props);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -66,6 +68,7 @@ function DetailsFilm(props) {
             width="560"
             height="315"
             src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+            // src="https://anihdplay.com/streaming.php?id=MjU2MTU=&title=Naruto+Episode+220&typesub=SUB"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -119,7 +122,7 @@ function DetailsFilm(props) {
           </span>
         </div>
       </div>
-      <Content />
+      <Content Linkto={props.Linkto} Special={props.video} />
     </div>
   );
 }
