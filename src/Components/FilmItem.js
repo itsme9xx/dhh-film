@@ -16,7 +16,7 @@ function FilmItem(props) {
       className={styles.slideBlock}
     >
       <span className={`${styles.playIcon} `}>
-        <i class="fa-sharp fa-solid fa-play" style={{ fontSize: 25 }}></i>
+        <i className="fa-sharp fa-solid fa-play" style={{ fontSize: 25 }}></i>
       </span>
 
       <img src={props.data.animeImg} alt="" />

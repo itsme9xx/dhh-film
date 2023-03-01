@@ -35,20 +35,23 @@ function DetailsFilm(props) {
               alt=""
             />
             <span className={`${styles.playIcon} `}>
-              <i class="fa-sharp fa-solid fa-play" style={{ fontSize: 25 }}></i>
+              <i
+                className="fa-sharp fa-solid fa-play"
+                style={{ fontSize: 25 }}
+              ></i>
             </span>
             <div className={styles.text}>
               <p>{props.video.animeTitle}</p>
               <ul className={styles.listButton}>
                 <Link to="">
                   <span className={styles.icon}>
-                    <i class="fa-regular fa-tv"></i>
+                    <i className="fa-regular fa-tv"></i>
                   </span>
                   <li className={styles.trailer}>Trailer</li>
                 </Link>
                 <Link to="">
                   <span className={styles.icon}>
-                    <i class="fa-sharp fa-solid fa-play"></i>
+                    <i className="fa-sharp fa-solid fa-play"></i>
                   </span>
                   <li className={styles.play}>Xem phim</li>
                 </Link>

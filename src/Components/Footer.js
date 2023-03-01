@@ -9,7 +9,10 @@ function Footer() {
         <div className={`container ${styles.container}`}>
           <div className={styles.pageUp}>
             <a href="#">
-              <i class="fa-regular fa-angle-up" style={{ fontSize: 40 }}></i>
+              <i
+                className="fa-regular fa-angle-up"
+                style={{ fontSize: 40 }}
+              ></i>
             </a>
           </div>
           <div className="row">

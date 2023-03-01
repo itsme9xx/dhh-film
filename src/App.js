@@ -66,22 +66,22 @@ function App() {
       ? `genre/${alllistfilm2}`
       : "anime-movies";
     navigate(`/filter/${alllistfilm2}`);
-    fetch(`https://gogoanime.consumet.stream/${endpoint.toLowerCase()}`)
-      .then((response) => response.json())
-      .then((animelist) => {
-        endpoint === "anime-movies"
-          ? setHeaderFilm(
-              animelist.filter((item) => item.releasedDate === alllistfilm2)
-            )
-          : setHeaderFilm([...animelist]);
-      });
+    fetch(
+      `https://anime-api-sandy.vercel.app/api/${endpoint.toLowerCase()}`
+    ).then((animelist) => {
+      endpoint === "anime-movies"
+        ? setHeaderFilm(
+            animelist.filter((item) => item.releasedDate === alllistfilm2)
+          )
+        : setHeaderFilm([...animelist]);
+    });
   }
   const [headerfilm, setHeaderFilm] = useState([]);
   const [loading, setLoading] = useState({});
   function viewAllTagFilm(alltagfilm, index) {
     setLoading({ [data[index].id]: true });
     const endpoint = isNaN(alltagfilm) ? `genre/${alltagfilm}` : "anime-movies";
-    fetch(`https://gogoanime.consumet.stream/${endpoint.toLowerCase()}`)
+    fetch(`https://anime-api-sandy.vercel.app/api/${endpoint.toLowerCase()}`)
       .then((response) => response.json())
       .then((animelist) => {
         const filmrecent = data[index];
@@ -108,11 +108,12 @@ function App() {
           setData([...data]);
         });
     }
-    fetchdata("https://gogoanime.consumet.stream/recent-release", data[0]);
-    fetchdata("https://gogoanime.consumet.stream/popular", data[3]);
-    fetchdata("https://gogoanime.consumet.stream/anime-movies", data[1]);
-    fetchdata("https://gogoanime.consumet.stream/genre/action", data[2]);
-    fetchdata("https://gogoanime.consumet.stream/top-airing", data[4], 10);
+    fetchdata("https://anime-api-sandy.vercel.app/api/recent-release", data[0]);
+    fetchdata("https://anime-api-sandy.vercel.app/api/popular", data[3]);
+    fetchdata("https://anime-api-sandy.vercel.app/api/anime-movies", data[1]);
+    fetchdata("https://anime-api-sandy.vercel.app/api/genre/action", data[2]);
+    fetchdata("https://anime-api-sandy.vercel.app/api/top-airing", data[4], 10);
+
     window.scrollTo(0, 0);
   }, []);
 

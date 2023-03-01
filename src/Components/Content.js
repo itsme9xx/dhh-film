@@ -15,7 +15,7 @@ function Content(props) {
   ]);
 
   useEffect(() => {
-    fetch("https://gogoanime.consumet.stream/anime-movies")
+    fetch("https://anime-api-sandy.vercel.app/api/anime-movies")
       .then((response) => response.json())
       .then((animelist) => {
         setSlide([...animelist]);

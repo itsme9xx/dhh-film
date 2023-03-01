@@ -44,7 +44,7 @@ function TypeFilm(props) {
       >
         Xem tất cả
         <i
-          class="fa-sharp fa-solid fa-caret-right"
+          className="fa-sharp fa-solid fa-caret-right"
           style={{
             marginLeft: 5,
             display: "flex",
