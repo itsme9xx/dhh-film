@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import FilmItem from "./FilmItem";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function Content(props) {
   // console.log("content", props);
@@ -14,12 +16,14 @@ function Content(props) {
       img: "",
     },
   ]);
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     fetch("https://anime-api-sandy.vercel.app/api/anime-movies")
       .then((response) => response.json())
       .then((animelist) => {
         setSlide([...animelist]);
+        setIsLoading(false);
       });
   }, []);
 
@@ -63,20 +67,24 @@ function Content(props) {
     <div className={`container ${styles.content}`}>
       <div className={styles.suggestfilm}>
         <p>PHIM SẮP CHIẾU</p>
-        <Slider {...settings}>
-          {slide.map((x, index) => {
-            return (
-              <div key={index}>
-                <FilmItem
-                  Linkto={props.Linkto}
-                  key={index}
-                  data={x}
-                  Special={props.Special}
-                />
-              </div>
-            );
-          })}
-        </Slider>
+        {isLoading ? (
+          <Skeleton height={250} />
+        ) : (
+          <Slider {...settings}>
+            {slide.map((x, index) => {
+              return (
+                <div key={index}>
+                  <FilmItem
+                    Linkto={props.Linkto}
+                    key={index}
+                    data={x}
+                    Special={props.Special}
+                  />
+                </div>
+              );
+            })}
+          </Slider>
+        )}
       </div>
     </div>
   );
