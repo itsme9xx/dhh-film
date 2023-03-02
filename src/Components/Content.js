@@ -62,7 +62,7 @@ function Content(props) {
   return (
     <div className={`container ${styles.content}`}>
       <div className={styles.suggestfilm}>
-        <p>PHIM ĐỀ CỬ</p>
+        <p>PHIM SẮP CHIẾU</p>
         <Slider {...settings}>
           {slide.map((x, index) => {
             return (

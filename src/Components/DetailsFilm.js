@@ -3,15 +3,20 @@ import { Link, useParams } from "react-router-dom";
 import Content from "./Content";
 import styles from "./DetailsFilm.module.css";
 import MenuIcon from "@material-ui/icons/Menu";
+import img from "../assets/img/videoexist.jpg";
 
 function DetailsFilm(props) {
-  console.log("detailfilm", props);
+  // console.log("detailfilm", props);
+  const param = useParams();
+  console.log(param);
+
   const [infoFilm, setInfoFilm] = useState({});
   let endpoint;
   if (props.video.animeId) {
     endpoint = `anime-details/${props.video.animeId}`;
   } else {
-    endpoint = "anime-movies";
+    // endpoint = "anime-movies";
+    endpoint = `anime-details/${param.keyword}`;
   }
 
   useEffect(() => {
@@ -20,8 +25,20 @@ function DetailsFilm(props) {
       .then((result) => setInfoFilm(result));
   }, [endpoint]);
 
+  const [linkWatch, setLinkWatch] = useState({});
+  const endpointlink = infoFilm.episodesList?.[0]?.episodeId;
+  // console.log("test2", endpointlink);
+  useEffect(() => {
+    if (!endpointlink) return;
+    fetch(
+      `https://anime-api-sandy.vercel.app/api/vidcdn/watch/${endpointlink.toLowerCase()}`
+    )
+      .then((res) => res.json())
+      .then((result2) => setLinkWatch(result2));
+  }, [endpointlink]);
+
   console.log("result", infoFilm);
-  const param = useParams();
+
   const [toogleVideo, settoogleVideo] = useState(false);
   const [hidden, setHidden] = useState(true);
   // console.log(props);
@@ -30,43 +47,47 @@ function DetailsFilm(props) {
   }, []);
   return (
     <div className={`container ${styles.total} `}>
-      <div
-        onClick={() => {
-          settoogleVideo(!toogleVideo);
-          setHidden(!hidden);
-        }}
-        className={styles.video}
-      >
+      <div className={styles.video}>
         {hidden && (
           <div>
             <img
+              onClick={() => {
+                settoogleVideo(!toogleVideo);
+                setHidden(!hidden);
+              }}
               className={styles.bigImg}
-              src={props.video.animeImg}
+              src={props.video.animeImg || infoFilm.animeImg}
               style={{ background: "cover" }}
               alt=""
             />
             <img
               className={styles.smallImg}
-              src={props.video.animeImg}
+              src={props.video.animeImg || infoFilm.animeImg}
               style={{ background: "cover" }}
               alt=""
             />
-            <span className={`${styles.playIcon} `}>
+            <span className={styles.playIcon}>
               <i
                 className="fa-sharp fa-solid fa-play"
                 style={{ fontSize: 25 }}
               ></i>
             </span>
             <div className={styles.text}>
-              <p>{props.video.animeTitle}</p>
+              <p>{props.video.animeTitle || infoFilm.animeTitle}</p>
               <ul className={styles.listButton}>
-                <Link to="">
+                <Link to="" className={styles.disabled}>
                   <span className={styles.icon}>
                     <i className="fa-regular fa-tv"></i>
                   </span>
                   <li className={styles.trailer}>Trailer</li>
                 </Link>
-                <Link to="">
+                <Link
+                  to=""
+                  onClick={() => {
+                    settoogleVideo(!toogleVideo);
+                    setHidden(!hidden);
+                  }}
+                >
                   <span className={styles.icon}>
                     <i className="fa-sharp fa-solid fa-play"></i>
                   </span>
@@ -76,19 +97,22 @@ function DetailsFilm(props) {
             </div>
           </div>
         )}
-
-        {toogleVideo && (
+        {toogleVideo && linkWatch.Referer && (
           <iframe
             className={styles.ytb}
             width="560"
             height="315"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-            // src="https://anihdplay.com/streaming.php?id=MjU2MTU=&title=Naruto+Episode+220&typesub=SUB"
-            title="YouTube video player"
+            src={linkWatch.Referer}
+            title="video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
+        )}
+        {toogleVideo && infoFilm.status === "Upcoming" && (
+          <div>
+            <img src={img} className={styles.ytb} alt="" />
+          </div>
         )}
       </div>
       <div className={styles.content}>
@@ -110,7 +134,7 @@ function DetailsFilm(props) {
 
           <li>
             <label>Tình trạng : </label>
-            <span> {infoFilm.status ? infoFilm.status : "Đã hoàn thành"} </span>
+            <span> {infoFilm.status ? infoFilm.status : "OnGoing"} </span>
           </li>
           <li>
             <label>Quốc gia : </label>

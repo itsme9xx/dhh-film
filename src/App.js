@@ -15,40 +15,40 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 function App() {
   const [data, setData] = useState([
     {
-      title: "PHIM LẺ MỚI CẬP NHẬT",
+      title: "PHIM THỊNH HÀNH",
       largeItem: true,
       tag: ["Action", "Adventure", "Comedy", "Dementia"],
+      video: [],
+      id: "phimthinhhanh",
+    },
+    {
+      title: "PHIM LẺ",
+      largeItem: true,
+      tag: ["Demons", "Drama", "Dub", "Ecchi"],
       video: [],
       id: "phimle",
     },
     {
-      title: "PHIM BỘ MỚI CẬP NHẬT",
+      title: "PHIM BỘ",
       largeItem: true,
       tag: ["2023", "2022", "2021", "2020"],
       video: [],
       id: "phimbo",
     },
+
     {
       title: "PHIM CHIẾU RẠP",
       largeItem: true,
-      tag: ["Demons", "Drama", "Dub", "Ecchi"],
+      tag: ["Family", "Fantasy"],
       video: [],
       id: "phimchieurap",
     },
-
     {
-      title: "PHIM THỊNH HÀNH",
-      largeItem: true,
-      tag: ["Family", "Fantasy"],
-      video: [],
-      id: "phimthinhhanh",
-    },
-    {
-      title: "PHIM SẮP CHIẾU",
+      title: "PHIM PHÁT SÓNG",
       tag: [],
       largeItem: false,
       video: [],
-      id: "phimsapchieu",
+      id: "phimphatsong",
     },
   ]);
   const navigate = useNavigate();
@@ -108,9 +108,9 @@ function App() {
           setData([...data]);
         });
     }
-    fetchdata("https://anime-api-sandy.vercel.app/api/recent-release", data[0]);
-    fetchdata("https://anime-api-sandy.vercel.app/api/popular", data[3]);
-    fetchdata("https://anime-api-sandy.vercel.app/api/anime-movies", data[1]);
+    fetchdata("https://anime-api-sandy.vercel.app/api/new-season", data[1]);
+    fetchdata("https://anime-api-sandy.vercel.app/api/popular", data[0]);
+    fetchdata("https://anime-api-sandy.vercel.app/api/anime-movies", data[3]);
     fetchdata("https://anime-api-sandy.vercel.app/api/genre/action", data[2]);
     fetchdata("https://anime-api-sandy.vercel.app/api/top-airing", data[4], 10);
 

@@ -6,15 +6,21 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 const datafilm = [
   {
-    title: "PHIM LẺ",
+    title: "PHIM THỊNH HÀNH",
     item: [],
     id: 0,
+    link: "#phimthinhhanh",
+  },
+  {
+    title: "PHIM LẺ",
+    item: [],
+    id: 1,
     link: "#phimle",
   },
   {
     title: "PHIM BỘ",
     item: [],
-    id: 1,
+    id: 2,
     link: "#phimbo",
   },
   {
@@ -135,20 +141,14 @@ const datafilm = [
   {
     title: "PHIM CHIẾU RẠP",
     item: [],
-    id: 2,
+    id: 4,
     link: "#phimchieurap",
   },
   {
-    title: "PHIM THỊNH HÀNH",
-    item: [],
-    id: 4,
-    link: "#phimthinhhanh",
-  },
-  {
-    title: "PHIM SẮP CHIẾU",
+    title: "PHIM PHÁT SÓNG",
     item: [],
     id: 3,
-    link: "#phimsapchieu",
+    link: "#phimphatsong",
   },
   {
     title: "TOP PHIM",
