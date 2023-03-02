@@ -4,6 +4,8 @@ import Content from "./Content";
 import styles from "./DetailsFilm.module.css";
 import MenuIcon from "@material-ui/icons/Menu";
 import img from "../assets/img/videoexist.jpg";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function DetailsFilm(props) {
   // console.log("detailfilm", props);
@@ -20,11 +22,16 @@ function DetailsFilm(props) {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(`https://anime-api-sandy.vercel.app/api/${endpoint.toLowerCase()}`)
       .then((res) => res.json())
-      .then((result) => setInfoFilm(result));
+      .then((result) => {
+        setInfoFilm(result);
+        setIsLoading(false);
+      });
   }, [endpoint]);
 
+  const [isLoading, setIsLoading] = useState(false);
   const [linkWatch, setLinkWatch] = useState({});
   const endpointlink = infoFilm.episodesList?.[0]?.episodeId;
   // console.log("test2", endpointlink);
@@ -34,7 +41,9 @@ function DetailsFilm(props) {
       `https://anime-api-sandy.vercel.app/api/vidcdn/watch/${endpointlink.toLowerCase()}`
     )
       .then((res) => res.json())
-      .then((result2) => setLinkWatch(result2));
+      .then((result2) => {
+        setLinkWatch(result2);
+      });
   }, [endpointlink]);
 
   console.log("result", infoFilm);
@@ -45,6 +54,7 @@ function DetailsFilm(props) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div className={`container ${styles.total} `}>
       <div className={styles.video}>
@@ -97,7 +107,7 @@ function DetailsFilm(props) {
             </div>
           </div>
         )}
-        {toogleVideo && linkWatch.Referer && (
+        {toogleVideo && linkWatch.Referer && infoFilm.status !== "Upcoming" && (
           <iframe
             className={styles.ytb}
             width="560"
@@ -119,39 +129,72 @@ function DetailsFilm(props) {
         <div className={styles.actor}>
           <li>
             <label>Đang phát :</label>
-            <span> HD VietSub</span>
+            <span>
+              {isLoading ? <Skeleton style={{ width: 200 }} /> : "HD VietSub"}
+            </span>
           </li>
           <li>
             <label>Thể loại: </label>
-            <span> {infoFilm.genres ? infoFilm.genres : "Drama"}</span>
+            <span>
+              {isLoading ? (
+                <Skeleton style={{ width: 200 }} />
+              ) : (
+                infoFilm.genres || "Drama"
+              )}
+            </span>
           </li>
           <li>
             <label>Năm phát hành : </label>
             <span>
-              {props.video.releasedDate ? props.video.releasedDate : "2000"}
+              {isLoading ? (
+                <Skeleton style={{ width: 200 }} />
+              ) : (
+                infoFilm.releasedDate || "2000"
+              )}
             </span>
           </li>
-
           <li>
             <label>Tình trạng : </label>
-            <span> {infoFilm.status ? infoFilm.status : "OnGoing"} </span>
+            <span>
+              {isLoading ? (
+                <Skeleton style={{ width: 200 }} />
+              ) : (
+                infoFilm.status || "N/A"
+              )}
+            </span>
           </li>
           <li>
             <label>Quốc gia : </label>
-            <span> Nhật Bản</span>
+            <span>
+              {isLoading ? <Skeleton style={{ width: 200 }} /> : "Nhật Bản"}
+            </span>
           </li>
           <li>
             <label>Điểm IMDB : </label>
-            <span> 9.9</span>
+            <span>
+              {isLoading ? <Skeleton style={{ width: 200 }} /> : "9.9"}
+            </span>
           </li>
           <li>
             <label>Tên khác : </label>
-            <span>{infoFilm.otherNames ? infoFilm.otherNames : "Unknown"}</span>
+            <span>
+              {isLoading ? (
+                <Skeleton style={{ width: 200 }} />
+              ) : (
+                infoFilm.otherNames || "Unknown"
+              )}
+            </span>
           </li>
         </div>
         <div className={styles.contentFilm}>
           <p className={styles.textFilm}>Nội dung phim : </p>
-          <span>{infoFilm.synopsis ? infoFilm.synopsis : `Phim hay`}</span>
+          <span>
+            {isLoading ? (
+              <Skeleton style={{ width: 200 }} />
+            ) : (
+              infoFilm.synopsis || "Phim hay"
+            )}
+          </span>
         </div>
       </div>
       <Content Linkto={props.Linkto} Special={props.video} />

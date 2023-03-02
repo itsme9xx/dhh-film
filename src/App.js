@@ -11,6 +11,7 @@ import ListFilm from "./Components/ListFilm";
 import SearchFilm from "./Components/SearchFilm";
 import TypeFilm from "./Components/TypeFlim";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 function App() {
   const [data, setData] = useState([
@@ -119,54 +120,56 @@ function App() {
 
   return (
     <div className="customContainer">
-      <Header b={setToogleMenu} viewHeaderfilm={viewHeaderfilm} />
-      <Routes>
-        {toogleMenu && (
+      <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+        <Header b={setToogleMenu} viewHeaderfilm={viewHeaderfilm} />
+        <Routes>
+          {toogleMenu && (
+            <Route
+              path="/"
+              element={
+                <>
+                  <Content Linkto={Linkto} />
+                  {data.map((x, index) => {
+                    return (
+                      <div key={index}>
+                        <TypeFilm
+                          idtarget={x.id}
+                          id={index}
+                          viewAllTagFilm={viewAllTagFilm}
+                          viewAllFilm={viewAllFilm}
+                          video={x.video}
+                          title={x.title}
+                          tag={x.tag}
+                        />
+                        <ListFilm
+                          loading={loading[x.id]}
+                          Linkto={Linkto}
+                          video={x.video.filter((x, index) => index < 12)}
+                          largeItem={x.largeItem}
+                        />
+                      </div>
+                    );
+                  })}
+                </>
+              }
+            />
+          )}
+          <Route path="/allfilm/" element={<AllFilm video={listfilm} />} />
           <Route
-            path="/"
-            element={
-              <>
-                <Content Linkto={Linkto} />
-                {data.map((x, index) => {
-                  return (
-                    <div key={index}>
-                      <TypeFilm
-                        idtarget={x.id}
-                        id={index}
-                        viewAllTagFilm={viewAllTagFilm}
-                        viewAllFilm={viewAllFilm}
-                        video={x.video}
-                        title={x.title}
-                        tag={x.tag}
-                      />
-                      <ListFilm
-                        loading={loading[x.id]}
-                        Linkto={Linkto}
-                        video={x.video.filter((x, index) => index < 12)}
-                        largeItem={x.largeItem}
-                      />
-                    </div>
-                  );
-                })}
-              </>
-            }
+            path="/filter/:keyword"
+            element={<AllFilm video={headerfilm} />}
           />
-        )}
-        <Route path="/allfilm/" element={<AllFilm video={listfilm} />} />
-        <Route
-          path="/filter/:keyword"
-          element={<AllFilm video={headerfilm} />}
-        />
-        <Route
-          path="/search/:keyword"
-          element={<SearchFilm Linkto={Linkto} />}
-        />
-        <Route
-          path="/details/:keyword"
-          element={<DetailsFilm video={detailFilm} Linkto={Linkto} />}
-        />
-      </Routes>
-      <Footer />
+          <Route
+            path="/search/:keyword"
+            element={<SearchFilm Linkto={Linkto} />}
+          />
+          <Route
+            path="/details/:keyword"
+            element={<DetailsFilm video={detailFilm} Linkto={Linkto} />}
+          />
+        </Routes>
+        <Footer />
+      </SkeletonTheme>
     </div>
   );
 }
