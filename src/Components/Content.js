@@ -9,7 +9,6 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 function Content(props) {
-  // console.log("content", props);
   const [slide, setSlide] = useState([
     {
       title: "",

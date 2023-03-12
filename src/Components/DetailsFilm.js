@@ -8,9 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 function DetailsFilm(props) {
-  // console.log("detailfilm", props);
   const param = useParams();
-  console.log(param);
 
   const [infoFilm, setInfoFilm] = useState({});
   let endpoint;
@@ -34,11 +32,11 @@ function DetailsFilm(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [linkWatch, setLinkWatch] = useState({});
   const endpointlink = infoFilm.episodesList?.[0]?.episodeId;
-  // console.log("test2", endpointlink);
+
   useEffect(() => {
     if (!endpointlink) return;
     fetch(
-      `https://anime-api-sandy.vercel.app/api/vidcdn/watch/${endpointlink.toLowerCase()}`
+      `https://api-anime-pi.vercel.app/meta/anilist/watch/${endpointlink.toLowerCase()}`
     )
       .then((res) => res.json())
       .then((result2) => {
@@ -46,11 +44,9 @@ function DetailsFilm(props) {
       });
   }, [endpointlink]);
 
-  console.log("result", infoFilm);
-
   const [toogleVideo, settoogleVideo] = useState(false);
   const [hidden, setHidden] = useState(true);
-  // console.log(props);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -107,18 +103,20 @@ function DetailsFilm(props) {
             </div>
           </div>
         )}
-        {toogleVideo && linkWatch.Referer && infoFilm.status !== "Upcoming" && (
-          <iframe
-            className={styles.ytb}
-            width="560"
-            height="315"
-            src={linkWatch.Referer}
-            title="video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        )}
+        {toogleVideo &&
+          linkWatch?.headers?.Referer &&
+          infoFilm.status !== "Upcoming" && (
+            <iframe
+              className={styles.ytb}
+              width="560"
+              height="315"
+              src={linkWatch?.headers?.Referer}
+              title="video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          )}
         {toogleVideo && infoFilm.status === "Upcoming" && (
           <div>
             <img src={img} className={styles.ytb} alt="" />
